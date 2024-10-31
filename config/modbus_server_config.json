@@ -1,0 +1,10 @@
+{
+  "log_config": "config/logging.ini",
+  "data_source": "https://api.open-meteo.com/v1/forecast?latitude=49.20&longitude=16.601&current=temperature_2m,relative_humidity_2m,wind_speed_10m",
+  "update_interval": 5,
+  "server": {
+    "host": "localhost",
+    "port": 8080,
+    "security": null
+  }
+}

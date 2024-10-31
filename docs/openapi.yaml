@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  title: Easycon homework backend application
+  description: API for accessing collected MQTT and Modbus data, and for sending control commands to MQTT publishers.
+  version: 0.1.0
+servers:
+  - url: http://localhost:8000
+
+paths:
+  /api/data/mqtt:
+    get:
+      summary: Get collected MQTT data
+      description: Retrieve all collected MQTT data.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnyMap"
+
+  /api/data/mqtt/meta:
+    get:
+      summary: Get metadata of collected MQTT data
+      description: Retrieve metadata related to collected MQTT data.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MetaData"
+
+  /api/data/modbus:
+    get:
+      summary: Get collected Modbus data
+      description: Retrieve all collected Modbus data.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnyMap"
+
+  /api/control/:
+    post:
+      summary: Send control command to a MQTT publisher.
+      description: Send a command to control a specific MQTT publisher.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                command:
+                  type: string
+                  enum: [ start, stop ]
+                  description: Start or stop command
+                identifier:
+                  type: string
+                  description: A string identifier for the MQTT publisher
+              required:
+                - command
+                - identifier
+      responses:
+        '204':
+          description: Command received successfully
+        '400':
+          description: Missing command or identifier
+
+components:
+  schemas:
+
+    AnyMap:
+      type: object
+      nullable: false
+      description: Can be any JSON object.
+      example: {
+        "key": "value"
+      }
+
+    MetaData:
+      type: array
+      items:
+        type: object
+        properties:
+          topic:
+            type: string
+            description: A topic where the MQTT data were published.
+          mongo_id:
+            type: string
+            description: Id of data in MongoDB related to this record.
+          created_at:
+            type: string
+            description: Date and time when the record was created.

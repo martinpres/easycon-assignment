@@ -1,0 +1,19 @@
+[project]
+name = "modbus_server"
+version = "0.1.0"
+authors = [
+    { name = "Martin Pres", email = "martin.pres@prespol.cz" }
+]
+description = "Periodically reads weather data from public WEB API and stores it in input registers."
+requires-python = ">=3.10"
+dependencies = [
+    "pymodbus==3.7.4",
+    "schedule==1.2.2"
+]
+
+[project.scripts]
+modbus_server = "server.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false

@@ -1,0 +1,17 @@
+{
+  "log_config": "config/logging.ini",
+  "read_interval": 5,
+  "client": {
+    "host": "localhost",
+    "port": 8080,
+    "security": {
+      "cafile": "modbus/certs/modbus_server_cert.pem",
+      "insecure": true
+    }
+  },
+  "mongodb": {
+    "connection": "mongodb://mongo:mongo@localhost:27017/",
+    "database": "public_api_data",
+    "collection": "modbus_data"
+  }
+}

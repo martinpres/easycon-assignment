@@ -1,0 +1,16 @@
+{
+  "log_config": "config/logging.ini",
+  "data_source": "https://api.coincap.io/v2/assets",
+  "sleep_interval": 10,
+  "mqtt": {
+    "broker_url": "localhost",
+    "broker_port": 1883,
+    "data_topic": "api/data",
+    "control_topic": "control/publishers",
+    "publish_interval": 5,
+    "security": {
+      "ca_cert": "mosquitto/certs/mosquitto_cert.pem",
+      "insecure": true
+    }
+  }
+}

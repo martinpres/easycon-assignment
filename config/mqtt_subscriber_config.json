@@ -1,0 +1,24 @@
+{
+  "log_config": "config/logging.ini",
+  "mqtt": {
+    "broker_url": "localhost",
+    "broker_port": 1883,
+    "data_topic": "api/data",
+    "security": {
+      "ca_cert": "mosquitto/certs/mosquitto_cert.pem",
+      "insecure": true
+    }
+  },
+  "mongodb": {
+    "connection": "mongodb://mongo:mongo@localhost:27017/",
+    "database": "public_api_data",
+    "collection": "mqtt_data"
+  },
+  "postgresql": {
+    "connection": "dbname=public_api_data user=postgres password=postgres host=localhost port=5432",
+    "pool": {
+      "min_size": 1,
+      "max_size": 2
+    }
+  }
+}

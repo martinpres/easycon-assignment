@@ -1,0 +1,20 @@
+[project]
+name = "mqtt_publisher"
+version = "0.1.0"
+authors = [
+    { name = "Martin Pres", email = "martin.pres@prespol.cz" }
+]
+description = "Periodically reads data from public WEB API and publishes it to a MQTT topic."
+requires-python = ">=3.10"
+dependencies = [
+    "paho-mqtt==2.1.0",
+    "schedule==1.2.2",
+    "requests==2.32.3"
+]
+
+[project.scripts]
+mqtt_publisher = "publisher.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false

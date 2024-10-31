@@ -1,0 +1,20 @@
+[project]
+name = "modbus_client"
+version = "0.1.0"
+authors = [
+    { name = "Martin Pres", email = "martin.pres@prespol.cz" }
+]
+description = "Periodically reads weather data from server's input registers and stores them to MongoDB."
+requires-python = ">=3.10"
+dependencies = [
+    "pymodbus==3.7.4",
+    "schedule==1.2.2",
+    "pymongo==4.10.1"
+]
+
+[project.scripts]
+modbus_client = "client.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
